@@ -40,6 +40,18 @@ async function main() {
         }
     }
 
+    const indexPath = path.join(OUTPUT_ROOT, 'index.d.ts');
+
+    if (fs.existsSync(indexPath)) {
+        let indexContent = fs.readFileSync(indexPath, 'utf-8');
+
+        if (!indexContent.endsWith('\n')) indexContent += '\n';
+
+        fs.writeFileSync(indexPath, `${indexContent}\ndeclare const console: { log(...args: any[]): void };\n`);
+
+        console.log(`[APPEND] console global declaration -> ${indexPath}`);
+    }
+
     console.log('--- BUILD COMPLETE ---');
 }
 

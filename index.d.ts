@@ -2753,3 +2753,5 @@ declare namespace mod {
     // Returns the seat index number for the target player if they are in a vehicle, otherwise returns -1.
     export function GetPlayerVehicleSeat(player: Player): number;
 }
+
+declare const console: { log(...args: any[]): void };
