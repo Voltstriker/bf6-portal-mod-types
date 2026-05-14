@@ -17,23 +17,10 @@ npm install -D bf6-portal-mod-types
 Point TypeScript at this package's types via `tsconfig.json`. The `mod` namespace is declared globally, so you do
 **not** import it; you only need to include the types.
 
-**Option A — only Portal mod types:**
-
 ```json
 {
     "compilerOptions": {
         "types": ["bf6-portal-mod-types"]
-    }
-}
-```
-
-**Option B — Portal mod types plus other type packages** (e.g.
-[quickjs-types](https://www.npmjs.com/package/quickjs-types) for the Portal runtime):
-
-```json
-{
-    "compilerOptions": {
-        "types": ["quickjs-types", "bf6-portal-mod-types"]
     }
 }
 ```
@@ -50,7 +37,7 @@ is no runtime code.
 
 ## Version semantics
 
-The official BF6 Portal SDK uses a **four-part** version (e.g. `1.2.3.0`) for the `mod` namespace and does not follow
+The official BF6 Portal SDK uses a **four-part** version (e.g. `1.3.1.0`) for the `mod` namespace and does not follow
 semver. This package maps that to **three-part semver** by dropping the first segment, and replacing the last segment
 with an internal increment to track patch changes to the package (i.e. for added documentation or usability
 improvements).
@@ -58,12 +45,12 @@ improvements).
 | Official SDK (mod namespace) | This package |
 | ---------------------------- | ------------ |
 | `a.b.c.d` (template)         | `b.c.x`      |
-| `1.1.3.0` (past)             | `1.3.x`      |
-| `1.2.3.0` (current)          | `2.3.x`      |
-| `1.2.4.0` (future example)   | `2.4.x`      |
+| `1.2.3.0` (past)             | `2.3.x`      |
+| `1.3.1.0` (current)          | `3.1.x`      |
+| `1.3.2.0` (future example)   | `3.2.x`      |
 
-- **Minor** version changes (e.g. `1.3.0` → `1.4.0`) align with a new official SDK release and may add or change APIs.
-- **Patch** versions (e.g. `1.3.0` → `1.3.1`) keep the same underlying SDK version and only add or improve documentation
+- **Minor** version changes (e.g. `3.1.0` → `3.2.0`) align with a new official SDK release and may add or change APIs.
+- **Patch** versions (e.g. `3.1.0` → `3.1.1`) keep the same underlying SDK version and only add or improve documentation
   and usability (no API surface change).
 
 When you upgrade patch versions, you can expect the same `mod` API with more or better JSDoc and no breaking changes.

@@ -1,6 +1,6 @@
 /////////////////////////////////////////////////////////////////////////////
 //
-// Version: 1.2.3.0
+// Version: 1.3.1.0
 //
 /////////////////////////////////////////////////////////////////////////////
 
@@ -34,7 +34,17 @@
 /* eslint-enable @typescript-eslint/triple-slash-reference */
 
 declare namespace mod {
+    /**
+     * A dictionary of string keys. Values are opaque references to strings in the `strings.json` file, and can only be
+     * used with the `mod.Message` function to construct a message object that displays the referenced string.
+     */
     export const stringkeys: Any;
+
+    /**
+     * A dictionary of strings. Values are the actual strings in the `strings.json` file, and can only be used in code
+     * to compare or log to the console. They cannot be used with the `mod.Message` function.
+     */
+    export const strings: Any;
 
     /**
      * Adds a synchronous/awaitable execution delay in seconds.

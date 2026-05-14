@@ -10,6 +10,18 @@
 
 declare namespace documentedMod {
     /**
+     * A dictionary of string keys. Values are opaque references to strings in the `strings.json` file, and can only be
+     * used with the `mod.Message` function to construct a message object that displays the referenced string.
+     */
+    export const stringkeys: Any;
+
+    /**
+     * A dictionary of strings. Values are the actual strings in the `strings.json` file, and can only be used in code
+     * to compare or log to the console. They cannot be used with the `mod.Message` function.
+     */
+    export const strings: Any;
+
+    /**
      * Adds a synchronous/awaitable execution delay in seconds.
      * @param n - The number of seconds to wait (can be fractional).
      * @returns A promise that resolves when the delay is complete.

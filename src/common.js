@@ -63,31 +63,42 @@ export function getNamedChildren(node) {
 
     scanNode.forEachChild((child) => {
         let name;
+        let isSupported = false;
 
-        if (child.getName) {
-            name = child.getName();
-        } else if (Node.isConstructorDeclaration(child)) {
-            name = 'constructor';
-        }
+        if (Node.isVariableStatement(child)) {
+            const declarations = child.getDeclarations();
 
-        const isSupported =
-            Node.isClassDeclaration(child) ||
-            Node.isInterfaceDeclaration(child) ||
-            Node.isModuleDeclaration(child) ||
-            Node.isFunctionDeclaration(child) ||
-            Node.isMethodDeclaration(child) ||
-            Node.isPropertyDeclaration(child) ||
-            Node.isPropertySignature(child) ||
-            Node.isMethodSignature(child) ||
-            Node.isEnumDeclaration(child) ||
-            Node.isTypeAliasDeclaration(child);
-        if (name && isSupported) {
-            if (!map.has(name)) {
-                map.set(name, []);
+            if (declarations.length > 0) {
+                name = declarations[0].getName();
+                isSupported = true;
+            }
+        } else {
+            if (child.getName) {
+                name = child.getName();
+            } else if (Node.isConstructorDeclaration(child)) {
+                name = 'constructor';
             }
 
-            map.get(name).push(child);
+            isSupported =
+                Node.isClassDeclaration(child) ||
+                Node.isInterfaceDeclaration(child) ||
+                Node.isModuleDeclaration(child) ||
+                Node.isFunctionDeclaration(child) ||
+                Node.isMethodDeclaration(child) ||
+                Node.isPropertyDeclaration(child) ||
+                Node.isPropertySignature(child) ||
+                Node.isMethodSignature(child) ||
+                Node.isEnumDeclaration(child) ||
+                Node.isTypeAliasDeclaration(child);
         }
+
+        if (!name || !isSupported) return;
+
+        if (!map.has(name)) {
+            map.set(name, []);
+        }
+
+        map.get(name).push(child);
     });
 
     return map;
