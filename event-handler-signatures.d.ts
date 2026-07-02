@@ -79,6 +79,9 @@ declare namespace mod {
         // This will trigger at the start of the gamemode.
         export function OnGameModeStarted(): void;
 
+        // This will trigger when the Golmud train stops.
+        export function OnGolmudTrainStopped(eventGolmudTrainStopReason: mod.GolmudTrainStopReason): void;
+
         // This will trigger when a Player is forced into the mandown state.
         export function OnMandown(eventPlayer: mod.Player, eventOtherPlayer: mod.Player): void;
 

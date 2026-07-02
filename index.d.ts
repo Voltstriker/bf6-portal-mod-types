@@ -1,6 +1,6 @@
 /////////////////////////////////////////////////////////////////////////////
 //
-// Version: 1.3.1.0
+// Version: 1.3.2.0
 //
 /////////////////////////////////////////////////////////////////////////////
 
@@ -15,6 +15,7 @@
 /// <reference path="./runtime-spawn-enums/dumbo.d.ts" />
 /// <reference path="./runtime-spawn-enums/eastwood.d.ts" />
 /// <reference path="./runtime-spawn-enums/fire-storm.d.ts" />
+/// <reference path="./runtime-spawn-enums/golmud-railway.d.ts" />
 /// <reference path="./runtime-spawn-enums/granite-downtown.d.ts" />
 /// <reference path="./runtime-spawn-enums/granite-marina.d.ts" />
 /// <reference path="./runtime-spawn-enums/granite-military-rnd.d.ts" />
@@ -730,6 +731,9 @@ declare namespace mod {
         emplacementType: StationaryEmplacements
     ): void;
 
+    // Sends Portal Log to the admin client of the current session when hosting via "Host" (Dedicated Server). For "Host Locally," Portal Log is always available locally, so this will do nothing. Writes to PortalLog.txt on the admin's client. If admin doesn't exist, this will do nothing. Quota applies for valid log sends per session.
+    export function SendPortalLogToAdmin(): void;
+
     // Force spawns all players in the deploy screen.
     export function DeployAllPlayers(): void;
 
@@ -786,7 +790,7 @@ declare namespace mod {
     export function SetGameModeTimeLimit(newTimeLimit: number): void;
 
     // Sets a HQ to a specific Team.
-    export function SetHQTeam(hq: HQ, teamID: Team): void;
+    export function SetHQTeam(hq: HQ, team: Team): void;
 
     // Sets the damage dealt by the RingOfFire to players caught.
     export function SetRingOfFireDamageAmount(ringOfFireId: RingOfFire, ringOfFireDamageAmount: number): void;
@@ -806,8 +810,8 @@ declare namespace mod {
     // Enables or disables an interact point.
     export function EnableInteractPoint(interactPoint: InteractPoint, enable: boolean): void;
 
-    // Enables or disables a spatial object.
-    export function EnableSpatialObject(spatialObject: SpatialObject, enable: boolean): void;
+    // Sends a move instruction to the Golmud Railway train.
+    export function GolmudTrainSendMoveCommand(moveCommand: GolmudTrainMoveCommands): void;
 
     /**
      * Request the system to evaluate if a straight line between two points is interrupted or not.
@@ -1143,7 +1147,7 @@ declare namespace mod {
         parentObject: mod.Object,
         image: WorldIconImages,
         verticalOffset: number,
-        iconColour: Vector,
+        iconColor: Vector,
         iconText: Message,
         visibility: Player | Team
     ): void;
@@ -1153,7 +1157,7 @@ declare namespace mod {
         parentObject: mod.Object,
         image: WorldIconImages,
         verticalOffset: number,
-        iconColour: Vector,
+        iconColor: Vector,
         iconText: Message
     ): void;
 
@@ -2059,6 +2063,9 @@ declare namespace mod {
     // Returns the emplacement spawner object corresponding to the provided id.
     export function GetEmplacementSpawner(number: number): EmplacementSpawner;
 
+    // Returns the World Position of the Golmud Moving Train. (Only on Golmud Railway map)
+    export function GetGolmudTrainLocation(): Vector;
+
     // Returns the interact point object corresponding to the provided id.
     export function GetInteractPoint(interactPointNumber: number): InteractPoint;
 
@@ -2112,7 +2119,8 @@ declare namespace mod {
             | RuntimeSpawn_Granite_ResidentialNorth
             | RuntimeSpawn_Granite_TechCenter
             | RuntimeSpawn_Granite_Underground
-            | RuntimeSpawn_Sand,
+            | RuntimeSpawn_Sand
+            | RuntimeSpawn_GolmudRailway,
         position: Vector,
         rotation: Vector,
         scale: Vector
@@ -2142,7 +2150,8 @@ declare namespace mod {
             | RuntimeSpawn_Granite_ResidentialNorth
             | RuntimeSpawn_Granite_TechCenter
             | RuntimeSpawn_Granite_Underground
-            | RuntimeSpawn_Sand,
+            | RuntimeSpawn_Sand
+            | RuntimeSpawn_GolmudRailway,
         position: Vector,
         rotation: Vector
     ): Any;
