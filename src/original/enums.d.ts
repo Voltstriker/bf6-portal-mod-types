@@ -107,6 +107,22 @@ declare namespace mod {
         Throwable_Stun_Grenade,
         Throwable_Throwing_Knife,
     }
+    export enum GolmudTrainMoveCommands {
+        MoveEast,
+        MoveWest,
+        Stop,
+    }
+    export enum GolmudTrainStopReason {
+        ReachedEastTerminal,
+        ReachedWestTerminal,
+        StoppedInTransit,
+    }
+    export enum GolmudTrainVariants {
+        MovingTrain,
+        None,
+        StaticTrain_Breakthrough,
+        StaticTrain_Rush,
+    }
     export enum InventorySlots {
         Callins,
         ClassGadget,
@@ -128,6 +144,7 @@ declare namespace mod {
         Dumbo,
         Eastwood,
         Firestorm,
+        GolmudRailway,
         Granite_ClubHouse,
         Granite_MainStreet,
         Granite_Marina,
@@ -282,6 +299,7 @@ declare namespace mod {
         Off,
     }
     export enum ScreenEffects {
+        Night,
         Saturated,
         Stealth,
         VL7,
@@ -374,6 +392,9 @@ declare namespace mod {
         Enum_CustomNotificationSlots,
         Enum_Factions,
         Enum_Gadgets,
+        Enum_GolmudTrainMoveCommands,
+        Enum_GolmudTrainStopReason,
+        Enum_GolmudTrainVariants,
         Enum_InventorySlots,
         Enum_Maps,
         Enum_MoveSpeed,
@@ -395,6 +416,7 @@ declare namespace mod {
         Enum_RuntimeSpawn_Dumbo,
         Enum_RuntimeSpawn_Eastwood,
         Enum_RuntimeSpawn_FireStorm,
+        Enum_RuntimeSpawn_GolmudRailway,
         Enum_RuntimeSpawn_Granite_Downtown,
         Enum_RuntimeSpawn_Granite_Marina,
         Enum_RuntimeSpawn_Granite_MilitaryRnD,
@@ -438,6 +460,7 @@ declare namespace mod {
         InteractPoint,
         LootMissionObjectManager,
         LootSpawner,
+        MapSpecificFeature,
         MCOM,
         Message,
         Number,
@@ -528,6 +551,7 @@ declare namespace mod {
         AH6M,
         AH6M_Pax,
         Cheetah,
+        Couch,
         CV90,
         DirtBike,
         DirtBike_Pax,

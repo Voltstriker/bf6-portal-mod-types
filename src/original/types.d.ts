@@ -57,6 +57,11 @@ declare namespace mod {
     const MCOMSymbol: unique symbol;
     export type MCOM = { _opaque: typeof MCOMSymbol };
 
+    // export type MapSpecificFeature = never;
+    // export type MapSpecificFeature = Any;
+    const MapSpecificFeatureSymbol: unique symbol;
+    export type MapSpecificFeature = { _opaque: typeof MapSpecificFeatureSymbol };
+
     // export type Message = never;
     // export type Message = Any;
     const MessageSymbol: unique symbol;
@@ -185,6 +190,7 @@ declare namespace mod {
         | HQ
         | InteractPoint
         | LootSpawner
+        | MapSpecificFeature
         | MCOM
         | Player
         | RingOfFire
